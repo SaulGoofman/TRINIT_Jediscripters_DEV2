@@ -21,5 +21,6 @@ const studentSchema = new mongoose.Schema({
   }
 });
 
+export const Enrollment = mongoose.model('Enrollment', enrollmentSchema);
 const Student = mongoose.model('Student', studentSchema, 'student');
 export default Student;

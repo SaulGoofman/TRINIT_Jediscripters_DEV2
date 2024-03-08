@@ -50,3 +50,49 @@ export const login_student = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
+export const register_tutor = async (req, res) => {
+  console.log(req.body);
+  try {
+    const {
+      firstName,
+      lastName,
+      email,
+      password,
+      bio,
+    } = req.body;
+
+    const salt = await bcrypt.genSalt();
+    const passwordHash = await bcrypt.hash(password, salt);
+    
+    const newTutor = new Tutor({
+      firstName,
+      lastName,
+      email,
+      password: passwordHash,
+      bio,
+      languages: [],
+    });
+    const savedTutor = await newTutor.save();
+    res.status(201).json(savedTutor);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+export const login_tutor = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const tutor = await Tutor.findOne({ email: email });
+    if (!tutor) return res.status(400).json({ msg: "Student does not exist. " });
+
+    const isMatch = await bcrypt.compare(password, tutor.password);
+    if (!isMatch) return res.status(400).json({ msg: "Invalid credentials. " });
+
+    const token = jwt.sign({ id: tutor._id }, process.env.JWT_SECRET);
+    delete tutor.password;
+    res.status(200).json({ token, tutor });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
