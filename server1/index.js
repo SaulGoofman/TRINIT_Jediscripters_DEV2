@@ -7,7 +7,8 @@ import helmet from "helmet";
 import morgan from "morgan";
 import path from "path";
 import { fileURLToPath } from "url";
-import User from "./models/User.js";
+import Student from "./models/Student.js";
+import Tutor from "./models/Tutor.js"
 import authRoutes from "./routes/auth.js";
 
 /* CONFIGURATIONS */
