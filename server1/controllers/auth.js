@@ -5,8 +5,8 @@ import Tutor from "../models/Tutor.js";
 
 /* REGISTER USER */
 export const register_student = async (req, res) => {
-  console.log(req.body);
   try {
+    console.log(req.body);
     const {
       firstName,
       lastName,
@@ -45,7 +45,7 @@ export const login_student = async (req, res) => {
 
     const token = jwt.sign({ id: student._id }, process.env.JWT_SECRET);
     delete student.password;
-    res.status(200).json({ token, student });
+    res.status(200).json({ "token" : token, "user" : student });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
