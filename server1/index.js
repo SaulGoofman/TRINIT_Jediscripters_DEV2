@@ -10,6 +10,7 @@ import { fileURLToPath } from "url";
 import Student from "./models/Student.js";
 import Tutor from "./models/Tutor.js";
 import authRoutes from "./routes/auth.js";
+import flashcardsRoutes from "./routes/flashcards.js";
 import appointmentRouter from "./routes/appointmentRouter";
 import slotRouter from "./routes/slotRouter";
 
@@ -35,6 +36,8 @@ app.use("/auth", authRoutes);
 app.get("/findTutors", findTutors);
 server.use("/appointments", appointmentRouter);
 server.use("/slots", slotRouter);
+//Flashcard
+app.use("/flashcards", flashcardsRoutes);
 
 console.log(process.env.MONGO_URL);
 const PORT = process.env.PORT || 6001;
