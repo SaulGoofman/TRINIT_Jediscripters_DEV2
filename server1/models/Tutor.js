@@ -11,8 +11,11 @@ const tutorSchema = new mongoose.Schema({
   pricing: Number,
   paymentInfo: {
     // Payment information fields
-  }
+  },
+  slots: [
+    { type: mongoose.Schema.Types.ObjectId, ref: "slotModel", required: true },
+  ],
 });
 
-const Tutor = mongoose.model('Tutor', tutorSchema, 'tutors');
+const Tutor = mongoose.model("Tutor", tutorSchema, "tutors");
 export default Tutor;
