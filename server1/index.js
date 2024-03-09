@@ -10,8 +10,8 @@ import { fileURLToPath } from "url";
 import Student from "./models/Student.js";
 import Tutor from "./models/Tutor.js";
 import authRoutes from "./routes/auth.js";
-const appointmentRouter = require("./routes/appointmentRouter");
-const slotRouter = require("./routes/slotRouter");
+import appointmentRouter from "./routes/appointmentRouter";
+import slotRouter from "./routes/slotRouter";
 
 //Testing
 import { findTutors } from "./controllers/tutors.js";
