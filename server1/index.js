@@ -11,6 +11,9 @@ import Student from "./models/Student.js";
 import Tutor from "./models/Tutor.js"
 import authRoutes from "./routes/auth.js";
 
+//Testing
+import { findTutors } from "./controllers/tutors.js";
+
 /* CONFIGURATIONS */
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -27,6 +30,7 @@ app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 
 //Registration
 app.use("/auth", authRoutes);
+app.get("/findTutors", findTutors);
 
 console.log(process.env.MONGO_URL);
 const PORT = process.env.PORT || 6001;

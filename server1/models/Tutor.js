@@ -6,8 +6,9 @@ const tutorSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   bio: String,
-  languages: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Language' }],
+  languages: [String],
   experience: Number,
+  pricing: Number,
   paymentInfo: {
     // Payment information fields
   }
