@@ -1,4 +1,3 @@
-// const mongoose = require('mongoose');
 import mongoose from "mongoose";
 
 const languageSchema = new mongoose.Schema({
@@ -8,5 +7,5 @@ const languageSchema = new mongoose.Schema({
   level: { type: String, enum: ['beginner', 'intermediate', 'advanced'] }
 });
 
-const Language = mongoose.model('Language', languageSchema);
+const Language = mongoose.model('Language', languageSchema, "languages");
 export default Language;

@@ -1,12 +1,14 @@
 import mongoose from "mongoose";
 
 const enrollmentSchema = new mongoose.Schema({
-    language: { type: mongoose.Schema.Types.ObjectId, ref: 'Language' },
-    flashcards: [{
-        front: {type: String, required: true},
-        back: {type: String, required: true},
-        notes: {type: String}
-    }]
+  language: { type: mongoose.Schema.Types.ObjectId, ref: "Language" },
+  flashcards: [
+    {
+      front: { type: String, required: true },
+      back: { type: String, required: true },
+      notes: { type: String },
+    },
+  ],
 });
 
 const studentSchema = new mongoose.Schema({
@@ -16,11 +18,18 @@ const studentSchema = new mongoose.Schema({
   password: { type: String, required: true },
   bio: String,
   enrollments: [enrollmentSchema],
+  appointments: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "appointmentModel",
+      required: true,
+    },
+  ],
   paymentInfo: {
     // Payment information fields
-  }
+  },
 });
 
-export const Enrollment = mongoose.model('Enrollment', enrollmentSchema);
-const Student = mongoose.model('Student', studentSchema, 'student');
+export const Enrollment = mongoose.model("Enrollment", enrollmentSchema);
+const Student = mongoose.model("Student", studentSchema, "student");
 export default Student;
