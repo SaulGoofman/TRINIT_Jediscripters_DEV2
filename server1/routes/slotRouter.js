@@ -1,16 +1,22 @@
-const express = require("express");
+import express from "express";
 
 const router = express.Router();
 
-const slotController = require("../../controllers/slotController");
+import {
+  findAllSlots,
+  findSlotById,
+  addSlot,
+  updateSlot,
+  deleteSlot,
+} from "../controllers/slotController.js";
 
 //get all slots
-router.get("/", slotController.findAllSlots);
+router.get("/", findAllSlots);
 
 //get slot by id
 //router.get('/', slotController.findSlotsByDate);
 
-router.get("/:id", slotController.findSlotById);
-router.post("/", slotController.addSlot);
+router.get("/:id", findSlotById);
+router.post("/", addSlot);
 
-module.exports = router;
+export default router;

@@ -1,14 +1,14 @@
-const slotModel = require("../models/slotModel");
+import slotModel from "../models/slotModel.js";
 
-module.exports = {
-  findAllSlots,
-  findSlotById,
-  addSlot,
-  updateSlot,
-  deleteSlot,
-};
+// module.exports = {
+//   findAllSlots,
+//   findSlotById,
+//   addSlot,
+//   updateSlot,
+//   deleteSlot,
+// };
 
-function findAllSlots(req, res) {
+export function findAllSlots(req, res) {
   const date = req.query.date;
 
   if (date) {
@@ -38,7 +38,7 @@ function findAllSlots(req, res) {
   }
 }
 
-function findSlotByTime(req, res) {
+export function findSlotByTime(req, res) {
   const date = req.body.slotDate;
   const time = req.body.slotTime;
 
@@ -82,7 +82,7 @@ function findSlotByTime(req, res) {
   // }
 }
 
-function findSlotById(req, res) {
+export function findSlotById(req, res) {
   const id = req.params.id;
 
   slotModel.findOne({ _id: id }, (error, data) => {
@@ -99,7 +99,7 @@ function findSlotById(req, res) {
   });
 }
 
-function addSlot(req, res) {
+export function addSlot(req, res) {
   const input = req.body;
   const newSlot = new slotModel(input);
   newSlot.slotBooked = "false";
@@ -116,7 +116,7 @@ function addSlot(req, res) {
   });
 }
 
-function updateSlot(req, res) {
+export function updateSlot(req, res) {
   const id = req.params.id;
   const input = req.body;
 
@@ -134,7 +134,7 @@ function updateSlot(req, res) {
   });
 }
 
-function deleteSlot(req, res) {
+export function deleteSlot(req, res) {
   const id = req.params.id;
 
   slotModel.findOneAndRemove({ _id: id }, (error, data) => {

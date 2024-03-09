@@ -11,8 +11,8 @@ import Student from "./models/Student.js";
 import Tutor from "./models/Tutor.js";
 import authRoutes from "./routes/auth.js";
 import flashcardsRoutes from "./routes/flashcards.js";
-import appointmentRouter from "./routes/appointmentRouter";
-import slotRouter from "./routes/slotRouter";
+import appointmentRouter from "./routes/appointmentRouter.js";
+import slotRouter from "./routes/slotRouter.js";
 
 //Testing
 import { findTutors } from "./controllers/tutors.js";
@@ -34,8 +34,8 @@ app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 //Registration
 app.use("/auth", authRoutes);
 app.get("/findTutors", findTutors);
-server.use("/appointments", appointmentRouter);
-server.use("/slots", slotRouter);
+app.use("/appointments", appointmentRouter);
+app.use("/slots", slotRouter);
 //Flashcard
 app.use("/flashcards", flashcardsRoutes);
 

@@ -1,11 +1,11 @@
-const slotModel = require("./data/models/slotModel");
+import slotModel from "../models/slotModel.js";
 
-module.exports = {
-  validateInput,
-  validateSlot,
-};
+// module.exports = {
+//   validateInput,
+//   validateSlot,
+// };
 
-function validateInput(req, res, next) {
+export function validateInput(req, res, next) {
   const input = req.body;
 
   if (
@@ -21,7 +21,7 @@ function validateInput(req, res, next) {
   }
 }
 
-function validateSlot(req, res, next) {
+export function validateSlot(req, res, next) {
   const input = req.body;
 
   slotModel.findOne(

@@ -1,30 +1,25 @@
-const express = require("express");
+import express from "express";
 
 const router = express.Router();
 
-const appointmentController = require("../../controllers/appointmentController");
-const middlewares = require("../middleware/middleware");
+import {
+  findAllAppointments,
+  addAppointment,
+  editAppointment,
+  deleteAppointment,
+} from "../controllers/appointmentController.js";
+import { validateSlot, validateInput } from "../middleware/middleware.js";
 
 //get all appointments
-router.get("/", appointmentController.findAllAppointments);
+router.get("/", findAllAppointments);
 
 //add appointment
-router.post(
-  "/",
-  middlewares.validateInput,
-  middlewares.validateSlot,
-  appointmentController.addAppointment
-);
+router.post("/", validateInput, validateSlot, addAppointment);
 
 //update appointment
-router.put(
-  "/:id",
-  middlewares.validateInput,
-  middlewares.validateSlot,
-  appointmentController.editAppointment
-);
+router.put("/:id", validateInput, validateSlot, editAppointment);
 
 //delete appointment
-router.delete("/:id", appointmentController.deleteAppointment);
+router.delete("/:id", deleteAppointment);
 
-module.exports = router;
+export default router;

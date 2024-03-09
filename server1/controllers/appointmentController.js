@@ -1,16 +1,16 @@
-const moment = require("moment");
+import moment from "moment";
 
-const slotModel = require("../models/slotModel");
-const appointmentModel = require("../models/appointmentModel");
+import slotModel from "../models/slotModel.js";
+import appointmentModel from "../models/appointentModel.js";
 
-module.exports = {
-  findAllAppointments,
-  addAppointment,
-  editAppointment,
-  deleteAppointment,
-};
+// module.exports = {
+//   findAllAppointments,
+//   addAppointment,
+//   editAppointment,
+//   deleteAppointment,
+// };
 
-function findAllAppointments(req, res) {
+export function findAllAppointments(req, res) {
   appointmentModel.find((error, data) => {
     if (error) {
       res.status(500).json({
@@ -23,7 +23,7 @@ function findAllAppointments(req, res) {
   });
 }
 
-function addAppointment(req, res) {
+export function addAppointment(req, res) {
   const input = req.body;
   slotTime: input.slotTime;
   slotDate: moment(input.slotDate).format("MM-DD-YYYY");
@@ -61,7 +61,7 @@ function addAppointment(req, res) {
     });
 }
 
-function editAppointment(req, res) {
+export function editAppointment(req, res) {
   const id = req.params.id;
   const input = req.body;
 
@@ -96,7 +96,7 @@ function editAppointment(req, res) {
   });
 }
 
-function deleteAppointment(req, res) {
+export function deleteAppointment(req, res) {
   const id = req.params.id;
 
   appointmentModel.findOneAndRemove({ _id: id }, (error, data) => {
